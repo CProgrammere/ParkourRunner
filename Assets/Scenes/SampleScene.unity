@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c197dc0e7d865f14393fd4ffc52b40b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Animator>k__BackingField: {fileID: 1333081157}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,8 +589,8 @@ Animator:
     'mixamorig7:RightHandMiddle2'\n\tTransform 'mixamorig7:LeftFoot'\n\tTransform
     'mixamorig7:LeftHandRing3'\n\tTransform 'mixamorig7:RightHandPinky1'\n\tand more
     ...\n\tFrom animation clip 'Idle'\n\tFrom animation clip 'Left Strafe'\n\tFrom
-    animation clip 'Right Strafe'\n\tFrom animation clip 'Running Up Stairs'\n\tFrom
-    animation clip 'Running Slide'"
+    animation clip 'Right Strafe'\n\tFrom animation clip 'Running Slide'\n\tFrom
+    animation clip 'Running Up Stairs'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
