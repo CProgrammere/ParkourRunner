@@ -1,7 +1,16 @@
 using UnityEngine;
+using System;
+
+public class MoveEventArg : EventArgs
+{
+    public Vector2 Direction;
+}
 
 public class PlayerMoveAction : PlayerAction
 {
+    public static event EventHandler OnMoveAnimation;
+
+
     private Vector2 moveDirection;
     private int moveHash = Animator.StringToHash("MoveBelndTree");
 
@@ -15,8 +24,7 @@ public class PlayerMoveAction : PlayerAction
         moveDirection = PlayerActionHandler.PlayerControls.Player.Walk.ReadValue<Vector2>();
         moveDirection.Normalize();
         Debug.Log(moveDirection);
-        PlayerActionHandler.Animator.SetFloat("X", moveDirection.x);
-        PlayerActionHandler.Animator.SetFloat("Y", moveDirection.y);
+        OnMoveAnimation?.Invoke(this, new MoveEventArg { Direction = moveDirection });
     }
 
     public override void Exit()

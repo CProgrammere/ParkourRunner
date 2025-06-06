@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerActionHandler : ActionHandler
 {
+    public static PlayerActionHandler Instance { get; private set; }
     [field: SerializeField] public PlayerControls PlayerControls { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
 
@@ -9,8 +10,23 @@ public class PlayerActionHandler : ActionHandler
 
     private void Awake()
     {
-        PlayerControls = new PlayerControls();
-        PlayerControls.Player.Enable();
+        try
+        {
+            if(Instance != null)
+            {
+                Debug.LogError("More then one PlayerActionHandler in the scene!");
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+        }
+
+        finally
+        {
+            PlayerControls = new PlayerControls();
+            PlayerControls.Player.Enable();
+        }
     }
 
     private void OnEnalbe()
