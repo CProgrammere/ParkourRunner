@@ -14,6 +14,7 @@ public class PlayerMoveAction : PlayerAction
     {
         moveDirection = PlayerActionHandler.PlayerControls.Player.Walk.ReadValue<Vector2>();
         moveDirection.Normalize();
+        Debug.Log(moveDirection);
         PlayerActionHandler.Animator.SetFloat("X", moveDirection.x);
         PlayerActionHandler.Animator.SetFloat("Y", moveDirection.y);
     }

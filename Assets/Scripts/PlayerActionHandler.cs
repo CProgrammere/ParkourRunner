@@ -9,8 +9,8 @@ public class PlayerActionHandler : ActionHandler
 
     private void Awake()
     {
-        SwitchAction(new PlayerMoveAction(this));
         PlayerControls = new PlayerControls();
+        PlayerControls.Player.Enable();
     }
 
     private void OnEnalbe()
@@ -23,7 +23,18 @@ public class PlayerActionHandler : ActionHandler
         PlayerControls.Disable();
     }
 
-    public void SwitchAction(PlayerAction playerAction)
+    private void Start()
+    {
+        SwitchAction(new PlayerMoveAction(this));
+    }
+
+    private void Update()
+    {
+        playerAction?.Tick(Time.deltaTime);
+    }
+
+
+public void SwitchAction(PlayerAction playerAction)
     {
         this.playerAction?.Exit();
         this.playerAction = playerAction;
