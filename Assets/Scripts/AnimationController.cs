@@ -15,7 +15,7 @@ public class AnimationController : MonoBehaviour
     {
         if(e.Direction.x > e.Direction.y)
         {
-            animator.Avatar = avaters[];
+
         }
     }
 }

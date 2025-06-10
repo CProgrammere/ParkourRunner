@@ -6,7 +6,7 @@ public class MoveEventArg : EventArgs
     public Vector2 Direction;
 }
 
-public class PlayerMoveAction : PlayerAction
+public class PlayerMoveState : PlayerState
 {
     public static event EventHandler OnMoveAnimation;
 
@@ -16,12 +16,12 @@ public class PlayerMoveAction : PlayerAction
 
     public override void Enter()
     {
-        PlayerActionHandler.Animator.CrossFadeInFixedTime(moveHash, 0.1f);
+        PlayerStateMachine.Animator.CrossFadeInFixedTime(moveHash, 0.1f);
     }
 
     public override void Tick(float deltaTime)
     {
-        moveDirection = PlayerActionHandler.PlayerControls.Player.Walk.ReadValue<Vector2>();
+        moveDirection = InputController.MoveDir;
         moveDirection.Normalize();
         Debug.Log(moveDirection);
         OnMoveAnimation?.Invoke(this, new MoveEventArg { Direction = moveDirection });
@@ -32,8 +32,8 @@ public class PlayerMoveAction : PlayerAction
 
     }
 
-    public PlayerMoveAction(PlayerActionHandler playerActionHandler)
+    public PlayerMoveState(PlayerStateMachine playerStateMachine)
     {
-        PlayerActionHandler = playerActionHandler;
+        PlayerStateMachine = playerStateMachine;
     }
 }
